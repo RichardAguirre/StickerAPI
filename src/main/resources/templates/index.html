@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${currentLang}">
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="#{app.title}">Sticker Search</title>
+    <style>
+      body {
+        background-color: #333;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        text-align: center;
+        color: white;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        justify-items: center;
+        margin-top: 20px;
+      }
+      .history-table {
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+      .history-table th,
+      .history-table td {
+        border: 1px solid #555;
+        padding: 8px;
+      }
+      .search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .search-container input[type="text"] {
+        width: 300px;
+        padding: 10px;
+        border: 2px solid #555;
+        border-right: none;
+        border-radius: 5px 0 0 5px;
+        font-size: 16px;
+        background-color: #444;
+        color: white;
+      }
+      .search-container button {
+        padding: 10px 20px;
+        border: 2px solid #555;
+        border-left: none;
+        border-radius: 0 5px 5px 0;
+        background-color: #ff6347;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      a {
+        color: #ff6347;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="background-color: #684c4c; padding: 5px; margin-bottom: 10px">
+      <p>Debug: Current Language is <span th:text="${currentLang}">en</span></p>
+    </div>
+    <h1 th:text="#{search.title}">Busca tu sticker</h1>
+    <div class="search-container">
+      <form id="searchForm" action="/search" method="get">
+        <input
+          type="text"
+          name="query"
+          required
+          th:placeholder="#{search.placeholder}"
+        />
+        <button type="submit" th:text="#{search.button}">Buscar</button>
+      </form>
+    </div>
+
+    <a href="/change-language?lang=es">Español</a> |
+    <a href="/change-language?lang=en">English</a> |
+    <a href="/history" th:text="#{history.button}">Historial</a>
+
+    <div class="grid">
+      <div th:each="sticker : ${stickers}">
+        <img
+          th:if="${sticker?.images?.original?.url}"
+          th:src="${sticker.images.original.url}"
+          style="max-width: 200px"
+        />
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const query = document.querySelector('input[name="query"]').value;
+          window.location.href = "/search?query=" + encodeURIComponent(query);
+        });
+    </script>
+  </body>
+</html>
