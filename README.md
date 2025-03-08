@@ -13,30 +13,27 @@ Este proyecto es una aplicación Java con Spring Boot que implementa un sistema 
 
 ## Dependencias
 
-### Core & Web
+#### Core & Web
 - spring-boot-starter-webflux
 - spring-boot-starter-thymeleaf
 - spring-boot-devtools
 
-
-### Base de Datos
+#### Base de Datos
 - spring-boot-starter-data-r2dbc
 - r2dbc-postgresql
 
-
-### Seguridad
+#### Seguridad
 - spring-boot-starter-security
 - thymeleaf-extras-springsecurity6
 
-
-### Utilidades
+#### Utilidades
 - json-simple (1.1.1)
 
-
-### Testing
+#### Testing
 - spring-boot-starter-test
 - spring-security-test
 - reactor-test
+
 
 ## Estructura del proyecto
 
