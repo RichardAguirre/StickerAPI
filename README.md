@@ -11,6 +11,29 @@ Este proyecto es una aplicación Java con Spring Boot que implementa un sistema 
  - [PostgreSQL](https://www.postgresql.org/)
  - [Spring Boot 3.x.](https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0)
 
+## Dependencias
+
+#### Core & Web
+- spring-boot-starter-webflux
+- spring-boot-starter-thymeleaf
+- spring-boot-devtools
+
+#### Base de Datos
+- spring-boot-starter-data-r2dbc
+- r2dbc-postgresql
+
+#### Seguridad
+- spring-boot-starter-security
+- thymeleaf-extras-springsecurity6
+
+#### Utilidades
+- json-simple (1.1.1)
+
+#### Testing
+- spring-boot-starter-test
+- spring-security-test
+- reactor-test
+
 
 ## Estructura del proyecto
 
@@ -377,3 +400,16 @@ Notas Adicionales:
 - Para los endpoints administrativos, se requiere incluir el header X-API-KEY con el token configurado en application.properties.
 - Todos los endpoints administrativos devuelven respuestas en formato JSON.
 - Las contraseñas se almacenan encriptadas en la base de datos.
+
+## Test
+
+Para correr los test ejecuta
+
+Respuesta exitosa:
+```sh
+mvn test 
+```
+deberias ver un mensaje similar a este
+
+![image](https://github.com/user-attachments/assets/844c3172-9cad-4ab9-a7a0-a644162b8e47)
+
