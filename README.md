@@ -400,3 +400,16 @@ Notas Adicionales:
 - Para los endpoints administrativos, se requiere incluir el header X-API-KEY con el token configurado en application.properties.
 - Todos los endpoints administrativos devuelven respuestas en formato JSON.
 - Las contraseñas se almacenan encriptadas en la base de datos.
+
+## Test
+
+Para correr los test ejecuta
+
+Respuesta exitosa:
+```sh
+mvn test 
+```
+deberias ver un mensaje similar a este
+
+![image](https://github.com/user-attachments/assets/844c3172-9cad-4ab9-a7a0-a644162b8e47)
+
