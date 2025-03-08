@@ -14,7 +14,7 @@ Este proyecto es una aplicación Java con Spring Boot que implementa un sistema 
 
 ## Estructura del proyecto
 
-```http
+```sh
   stickers/
 ├── src/
 │   ├── main/
@@ -62,13 +62,13 @@ Este proyecto es una aplicación Java con Spring Boot que implementa un sistema 
 ## Scripts necesarios para incializar base de datos del proyecto
 
 #### Crear base de datos PostgreSQL:
-```http
+```sh
 CREATE DATABASE stickers;
 ```
 
 #### Al ejecutar el proyecto las tablas se deben crear (En caso de que no se creen automaticamente ejecuta)
 
-```http
+```sh
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS search_history (
 ```
 
 ## Configurar archivo application.properties:
-```http
+```sh
 # Configuración BD
 spring.r2dbc.url=r2dbc:postgresql://localhost:5432/stickers
 spring.r2dbc.username=postgres
@@ -108,21 +108,21 @@ Para obtener un api key ingresa [giphy](https://developers.giphy.com/)
 
 Ejecutalo el siguiente comando con openssl o usando un generador en linea
 
-```http
+```sh
 openssl rand -base64 32
 ```
 
 ## Compila el proyecto
-```http
+```sh
 mvn clean package -DskipTests
 ```
 
 ## Ejecuta la aplicación
-```http
+```sh
 mvn spring-boot:run
 ```
 para validar el funcionamiento ingresa aplicación
-```http
+```sh
 http://localhost:8080/
 ```
 
