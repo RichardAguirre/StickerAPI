@@ -11,6 +11,32 @@ Este proyecto es una aplicación Java con Spring Boot que implementa un sistema 
  - [PostgreSQL](https://www.postgresql.org/)
  - [Spring Boot 3.x.](https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0)
 
+## Dependencias
+
+### Core & Web
+- spring-boot-starter-webflux
+- spring-boot-starter-thymeleaf
+- spring-boot-devtools
+
+
+### Base de Datos
+- spring-boot-starter-data-r2dbc
+- r2dbc-postgresql
+
+
+### Seguridad
+- spring-boot-starter-security
+- thymeleaf-extras-springsecurity6
+
+
+### Utilidades
+- json-simple (1.1.1)
+
+
+### Testing
+- spring-boot-starter-test
+- spring-security-test
+- reactor-test
 
 ## Estructura del proyecto
 
