@@ -39,8 +39,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/login", "/css/**", "/js/**", "/images/**", "/change-language/**").permitAll()
-                        .pathMatchers("/api/admin/**").permitAll() // Permitimos el acceso pero será filtrado por
-                                                                   // ApiKeyAuthFilter
+                        .pathMatchers("/api/admin/**").permitAll()
                         .anyExchange().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")

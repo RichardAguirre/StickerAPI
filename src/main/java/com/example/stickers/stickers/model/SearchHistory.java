@@ -37,7 +37,7 @@ public class SearchHistory {
     public void setSearchDate(LocalDateTime searchDate) {
         this.searchDate = searchDate;
     }
-    
+
     public String getFormattedSearchDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return searchDate != null ? searchDate.format(formatter) : "";

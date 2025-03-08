@@ -26,7 +26,7 @@ public class ThymeleafConfig {
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasenames("messages/messages"); // Ruta correcta
+        source.setBasenames("messages/messages");
         source.setDefaultEncoding("UTF-8");
         source.setUseCodeAsDefaultMessage(true);
         return source;

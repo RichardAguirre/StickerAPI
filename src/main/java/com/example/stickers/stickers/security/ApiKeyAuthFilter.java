@@ -16,11 +16,12 @@ public class ApiKeyAuthFilter implements WebFilter {
     private static final String API_KEY_HEADER = "X-API-KEY";
     private static final String ADMIN_API_PATH = "/api/admin/";
 
+    @SuppressWarnings("null")
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String path = exchange.getRequest().getPath().value();
         
-        // Solo verificamos el token para endpoints administrativos
+        // token para endpoints administrativos
         if (path.startsWith(ADMIN_API_PATH)) {
             String apiKey = exchange.getRequest().getHeaders().getFirst(API_KEY_HEADER);
             

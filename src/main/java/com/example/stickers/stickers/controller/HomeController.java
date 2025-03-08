@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.reactive.result.view.Rendering;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
 import java.util.Locale;
 
 @Controller
@@ -30,24 +29,26 @@ public class HomeController {
     @Autowired
     private CookieLocaleResolver localeResolver;
 
+    @SuppressWarnings("null")
     @GetMapping("/")
     public Mono<Rendering> index(ServerWebExchange exchange) {
         LocaleContext localeContext = localeResolver.resolveLocaleContext(exchange);
         Locale locale = localeContext.getLocale();
 
-        System.out.println("Index page, using locale: " + locale); // Debug
+        System.out.println("Index page, using locale: " + locale);
 
         return Mono.just(Rendering.view("index")
                 .modelAttribute("currentLang", locale.getLanguage())
                 .build());
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/search")
     public Mono<Rendering> search(@RequestParam String query, ServerWebExchange exchange) {
         LocaleContext localeContext = localeResolver.resolveLocaleContext(exchange);
         Locale locale = localeContext.getLocale();
 
-        System.out.println("Search with query: " + query + ", using locale: " + locale); // Debug
+        System.out.println("Search with query: " + query + ", using locale: " + locale);
 
         return giphyService.getStickersData(query, locale)
                 .collectList()
@@ -57,12 +58,13 @@ public class HomeController {
                         .build());
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/history")
     public Mono<Rendering> history(ServerWebExchange exchange) {
         LocaleContext localeContext = localeResolver.resolveLocaleContext(exchange);
         Locale locale = localeContext.getLocale();
 
-        System.out.println("History page, using locale: " + locale); // Debug
+        System.out.println("History page, using locale: " + locale);
 
         return searchHistoryService.findAll()
                 .collectList()
@@ -72,29 +74,30 @@ public class HomeController {
                         .build());
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/change-language")
     public Mono<Rendering> changeLanguage(
             @RequestParam String lang,
             ServerWebExchange exchange) {
         return Mono.fromSupplier(() -> {
-            // Paso 1: Validar el parámetro 'lang'
+            // Valida parámetro 'lang'
             Locale locale;
             try {
                 locale = Locale.forLanguageTag(lang);
             } catch (Exception e) {
-                locale = Locale.ENGLISH; // Fallback seguro
+                locale = Locale.ENGLISH;
             }
 
-            // Paso 2: Establecer la cookie de idioma
+            // Establece cookie de idioma
             localeResolver.setLocaleContext(exchange, new SimpleLocaleContext(locale));
 
-            // Paso 3: Obtener URL de redirección con lógica robusta
+            // Obtener URL redirección
             String redirectUrl = exchange.getRequest().getHeaders().getFirst("Referer");
             if (!StringUtils.hasText(redirectUrl) || redirectUrl.contains("/change-language")) {
-                redirectUrl = "/"; // Redirigir a raíz si Referer es inválido
+                redirectUrl = "/";
             }
 
-            // Debug: Verificar valores
+            // TODO: Verificar valores
             System.out.println("[DEBUG] Locale: " + locale + " | Redirect: " + redirectUrl);
 
             return Rendering.redirectTo(redirectUrl).build();

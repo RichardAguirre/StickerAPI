@@ -15,12 +15,13 @@ public class LoginController {
 
     @Autowired
     private CookieLocaleResolver localeResolver;
-    
+
+    @SuppressWarnings("null")
     @GetMapping("/login")
     public Mono<Rendering> login(ServerWebExchange exchange) {
         Locale locale = localeResolver.resolveLocaleContext(exchange).getLocale();
-        System.out.println("Login page requested with locale: " + locale); // Debug logging
-        
+        System.out.println("Login page requested with locale: " + locale);
+
         return Mono.just(Rendering.view("login")
                 .modelAttribute("currentLang", locale.getLanguage())
                 .modelAttribute("error", exchange.getRequest().getQueryParams().containsKey("error"))
