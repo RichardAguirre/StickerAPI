@@ -59,7 +59,7 @@ class HomeControllerTest {
     }
     
     @Test
-    void search_ShouldReturnResults() {  // Renombrado para reflejar el comportamiento actual
+    void search_ShouldReturnResults() { 
         // Arrange
         String query = "test";
         LocaleContext localeContext = new SimpleLocaleContext(Locale.ENGLISH);

@@ -14,21 +14,30 @@ import reactor.test.StepVerifier;
 
 import java.util.Arrays;
 
+/**
+ * Tests for the SearchHistoryService implementation
+ */
 @ExtendWith(MockitoExtension.class)
 class SearchHistoryServiceTest {
 
     @Mock
     private SearchHistoryRepository searchHistoryRepository;
 
-    // En lugar de @InjectMocks, creamos manualmente
+    // Manually created instead of using @InjectMocks
     private SearchHistoryServiceImpl searchHistoryService;
 
+    /**
+     * Set up test environment before each test
+     */
     @BeforeEach
     void setUp() {
-        // Crear una instancia de la implementación concreta
+        // Create an instance of the concrete implementation
         searchHistoryService = new SearchHistoryServiceImpl(searchHistoryRepository);
     }
 
+    /**
+     * Test that search terms are saved correctly
+     */
     @Test
     void saveSearch_ShouldSaveSearchTerm() {
         // Arrange
@@ -46,6 +55,9 @@ class SearchHistoryServiceTest {
         Mockito.verify(searchHistoryRepository).save(Mockito.any(SearchHistory.class));
     }
 
+    /**
+     * Test that all search history can be retrieved
+     */
     @Test
     void findAll_ShouldReturnSearchHistory() {
         // Arrange
